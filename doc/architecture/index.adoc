@@ -65,3 +65,31 @@ gameplay. Kinda like MMORPG acounts servers or mobile game backends.
 |Admin tools
 |Debug, monitor, bans
 |===
+
+[#dummy-architecture]
+== Simplified dummy architecture
+
+[,txt]
+----
++-------------------+      +---------------------+
+|     Game Client   | <--> |  Game Server (TCP)  |
+| (Unity, Unreal...)|      |  - Physics, Combat  |
++-------------------+      |  - Position Updates |
+          |                +---------------------+
+          |
+          v
++-------------------+
+| REST API Backend  |
+| - Auth/Login      |
+| - Player Profiles |
+| - Inventory       |
+| - Save/Load State |
++-------------------+
+          |
+          v
++-------------------+
+| Database (SQL/NoSQL) |
++-------------------+
+----
+
+
