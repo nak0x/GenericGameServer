@@ -1,0 +1,24 @@
+= Symfony project
+
+== Objectifs d'apprentissage
+
+. Learn to interact with other services
+. Manage an admin panel and a small public interface to access data
+. Setup a game server for a small unity game
+. Create a generic system
+
+== Brief
+
+The goal for this project is to have a small game server that will allow player of the said game
+to have a profile on the game server to access theirs caracters datas. The game server has to
+interact with a small game in unity.
+The game server has to be generic and allow admin to adapt the game server to theirs needs.
+
+== Roadmap
+
+. Learn the basics of game servers
+. Setup a suited architecture
+. Create the base game server
+. Setup the admin panel
+. Setup the pubic interface
+. Add the interactions with unity (Websocket ?)
