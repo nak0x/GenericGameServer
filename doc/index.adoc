@@ -1,3 +1,8 @@
 = Generic Game Server documentation
 
+As of what is explained in the project readme, this project is for learning
+a bit of symfony while understanding Game Server concept and interactions.
+
+[#navigation]
+== Navigation
 xref:./architecture/index.adoc[Architecture]
