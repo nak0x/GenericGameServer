@@ -1,0 +1,3 @@
+= Generic Game Server documentation
+
+xref:./architecture/index.adoc[Architecture]

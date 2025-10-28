@@ -1,0 +1,67 @@
+= Generic Game Server Architecture
+
+[#definition]
+== Game Server definition
+A *Game Server* is a program (or set of programs) that runs on a dedicated machine
+to manage all the **authorative state** of a game.
+
+It ensures that:
+
+. Players' data is stored safely
+. The world or session remains consistent
+. Communication between players follows the game's rules
+. Cheating is prevented by having a trusted authority
+
+It's kinda like a brain for multiplayer or persitent game. The game itself is
+then more a client, an interface - that shos what's happening, sends inputs and
+reveives updates.
+
+[#game-server-type]
+== Types of Game Servers
+
+In the world of games there is two types of "Game server".
+
+=== Dedicated Game Server
+
+Runs the game logic and world sims. Kinda link CSGO or Minecraft servers.
+They are specialized in :
+- Managing world state
+- Update connected players
+- Realtime running (30/60 ticks per seconds)
+
+=== Backend / Persistent Server
+
+They handle data persistence and user management. They do not require real time
+gameplay. Kinda like MMORPG acounts servers or mobile game backends.
+- Stores users accounts servers, inventory, progress or stats,
+- Handle login, auth, matchmaking
+- Talks to database
+
+[#responsabilities]
+== Core responsibilities
+
+[cols="1,1"]
+|===
+| Layer | Role
+
+|Auth Service
+|Login, tokens, sessions
+
+|Database
+|Persistent storage
+
+|World/Game Server
+|Real-time simulation
+
+|Matchmaking/Lobby
+|Groups players into sessions
+
+|API Gateway/REST or gRPC Server
+|Comunication layer for clients
+
+|Chat/Social services
+|Manage chat, friends, guilds, etc
+
+|Admin tools
+|Debug, monitor, bans
+|===
