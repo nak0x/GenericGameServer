@@ -6,6 +6,7 @@
 . Manage an admin panel and a small public interface to access data
 . Setup a game server for a small unity game
 . Create a generic system
+. Learn SSE and mercure
 
 == Brief
 
@@ -17,8 +18,10 @@ The game server has to be generic and allow admin to adapt the game server to th
 == Roadmap
 
 . Learn the basics of game servers
+. Define base data types
 . Setup a suited architecture
 . Create the base game server
 . Setup the admin panel
 . Setup the pubic interface
-. Add the interactions with unity (Websocket ?)
+. Add the interactions with unity (SSE)
+
