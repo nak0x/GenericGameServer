@@ -1,5 +1,10 @@
 = Generic Game Server Architecture
 
+[#schema]
+== Schema
+The data schema of the generic game servers, and the lists of the entities can be found here :
+xref:./data-schema.adoc[Schema & Entities]
+
 [#definition]
 == Game Server definition
 A *Game Server* is a program (or set of programs) that runs on a dedicated machine
@@ -36,6 +41,12 @@ gameplay. Kinda like MMORPG acounts servers or mobile game backends.
 - Stores users accounts servers, inventory, progress or stats,
 - Handle login, auth, matchmaking
 - Talks to database
+
+For this projects I've choose to create a persitent generic server that allow
+game admins to setup data storage and public access to theses data for theirs
+unity games.
+
+More here : xref:./server-type.adoc[Server type & choices]
 
 [#responsabilities]
 == Core responsibilities
@@ -91,5 +102,3 @@ gameplay. Kinda like MMORPG acounts servers or mobile game backends.
 | Database (SQL/NoSQL) |
 +-------------------+
 ----
-
-

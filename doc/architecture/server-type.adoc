@@ -1,0 +1,86 @@
+= Server type & choices
+
+For this project, and following what php is most capable in, I've choose to create a persitent
+server, witch whill hold data and provide an authority for anti cheat and player auth on unity
+persitent games.
+
+[#server-type]
+== Server type
+
+The persitent type of the Game Server familly, is used to manage static data, ensuring that they
+keep in sync and available. It also allow players to browe theirs datas on a public interface,
+either by login in to see theires personal data, or throw public data such as other player levels,
+shops or more.
+
+The fact that this server is generic, it means that an game admin can host an instance of this
+server and config the types of data he need, based on pre-defined data structure and types.
+Choose the ACL for theses datas.
+
+[#choices]
+== Choices
+
+I choose to have pre-defined data types and structure to simplify server management, and ensure
+performance and relability. Avoiding storage of ugly JSON in SQL database or weird stuf like that.
+
+The servers can be read as a 2 level architecture.
+
+. First level (core) : Meta types, generic part of the architecture
+. Second level (game) : Admin generated level, this is what will be used by the game and the player.
+
+Thoses two level need to be independant, but work together, the second one beeing driven by the
+first one. The first level is in charge of the core server, managing basic data types, holding
+ACL and creating final endpoints. 
+
+The second level on it's own cannot do much, it doesn't hold logic. But it allow final interfaces
+and client to access game datas.
+
+---
+
+[#core]
+== Core
+
+The core, might also be look at the first level or the kernel of this generic game server.
+
+The learn more check the xref:./core.adoc[Core specification].
+
+=== Concepts
+
+[cols="1,3"]
+|===
+| Concept name | Description
+
+|Admin
+|An admin can be think of Game Developper or as the entity that manage and administrate the game.
+
+|Client
+|A Client can be think of as a Game. It consume datas and player list, request auth authority.
+
+|Player
+|The concept of a Player, is targeted to unique humans that playe the game.
+
+|Data
+|Data are the main part of the core, they hold a set of data types and can be think as tables or entities.
+
+|Data type
+|A data type is self explained, it hold a data type and allow admin to create Data
+
+|ACL (Access Control List)
+|ACL are ment to be used as security rules to allow Player or Client to access or not datas
+
+|View
+|A view is a way to access to data. Theirs access are managed by ACLs
+
+|Template
+|A template 
+
+|===
+
+[#game]
+== Game
+
+The game, might also be look at the second level or the generated part.
+
+The learn more check the xref:./game.adoc[Game specification].
+
+This level is design by the Admins of the server instances.
+
