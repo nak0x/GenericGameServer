@@ -22,44 +22,55 @@ classDiagram
 
     class Game{
         String name
+				User users
+				Client clients
+				Ressource ressources
     }
 
     class User{
         String name
         String email
-				Enum role
         MD5 password
+				Enum role
+				Game games
     }
 
     class Client {
         String name
         String provider
+				Game game
     }
 
 		class Data {
 				JSON content
+				Ressource ressource
 		}
 
     class Ressource {
         String name
-        Collection<DataType> dataType
+        DataType dataTypes
+				Game game
+				Data data
     }
 
     class DataType{
         String name
         String contentType
         String FormType
+				Ressource ressources
     }
 
 		class Endpoint {
 				Enum type
-				Collection<Ressource> ressource
-				Action action
+				Ressource ressources
+				Action actions
 				String route
+				Template template?
 		}
 
 		class Action {
 				Enum method
+				ACL acl
 		}
 
     class ACL{
