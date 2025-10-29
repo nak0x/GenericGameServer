@@ -1,5 +1,79 @@
 = Data Schema And entities
 
+[#schema]
+== Schema
+
+[,mermaid]
+----
+classDiagram
+
+    Game<|--|>Admin
+    Game<|--|>Client
+    Game<|--Player
+    Game<|--Data
+
+    Data<|--|>DataType
+    Data<|--ACL
+
+    View<|--Template
+    View<|--ACL
+    View<|--Data
+
+
+    class Game{
+        String name
+    }
+
+    class Admin{
+        String name
+        String email
+        MD5 password
+    }
+
+    class Client {
+        String name
+        String provider
+    }
+
+    class Player{
+        String name
+        String pseudo
+        MD5 password
+        OneToMany Data
+    }
+
+    class Data {
+        String name
+        MD5 hash
+        ManyToMany DataTypes
+    }
+
+    class DataType{
+        String name
+        String contentType
+        String FormType
+        ReverseManyToMany DataT
+    }
+
+    class ACL{
+        String name
+        Int level
+    }
+
+    class View{
+        String name
+        OneToOne ACL
+        OneToMany Data
+        ReverseManyToOne Template
+    }
+
+    class Template{
+        String name
+        String templateName
+        OneToMany View
+    }
+----
+
 [#entities]
 == Entities
 
