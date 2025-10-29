@@ -7,18 +7,18 @@
 ----
 classDiagram
 
-    Game "*" --> "*" User
+    Game "*" <--> "*" User
     Game "1" --> "*" Client
     Game "1" --> "*" Ressource
 
     Ressource "1" --> "*" Data
-    Ressource "*" --> "*" DataType
+    Ressource "*" <--> "*" DataType
 
-    Endpoint "1" --> "1" Template
-    Endpoint "*" --> "*" Ressource
+    Endpoint "1" <--> "1" Template
+    Endpoint "*" <--> "*" Ressource
 		Endpoint "1" --> "*" Action
 
-    Action "*" --> "1" ACL
+    Action "*" <-- "1" ACL
 
     class Game{
         String name
