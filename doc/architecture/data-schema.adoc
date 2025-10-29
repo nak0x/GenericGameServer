@@ -9,14 +9,16 @@ classDiagram
 
     Game "*" --> "*" User
     Game "1" --> "*" Client
-    Game "1" --> "*" Data
+    Game "1" --> "*" Ressource
 
-    Data "*" --> "*" DataType
-    Data "*" --> "1" ACL
+    Ressource "1" --> "*" Data
+    Ressource "*" --> "*" DataType
 
-    View "1" --> "1" Template
-    View "*" --> "1" ACL
-    View "*" --> "*" Data
+    Endpoint "1" --> "1" Template
+    Endpoint "*" --> "*" Ressource
+		Endpoint "1" --> "*" Action
+
+    Action "*" --> "1" ACL
 
     class Game{
         String name
@@ -34,9 +36,13 @@ classDiagram
         String provider
     }
 
-    class Data {
+		class Data {
+				JSON content
+		}
+
+    class Ressource {
         String name
-        MD5 hash
+        Collection<DataType> dataType
     }
 
     class DataType{
@@ -45,13 +51,20 @@ classDiagram
         String FormType
     }
 
+		class Endpoint {
+				Enum type
+				Collection<Ressource> ressource
+				Action action
+				String route
+		}
+
+		class Action {
+				Enum method
+		}
+
     class ACL{
         String name
         Int level
-    }
-
-    class View{
-        String name
     }
 
     class Template{
