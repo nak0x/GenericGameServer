@@ -37,14 +37,12 @@ classDiagram
     class Data {
         String name
         MD5 hash
-        ManyToMany DataTypes
     }
 
     class DataType{
         String name
         String contentType
         String FormType
-        ReverseManyToMany DataT
     }
 
     class ACL{
@@ -54,15 +52,11 @@ classDiagram
 
     class View{
         String name
-        OneToOne ACL
-        OneToMany Data
-        ReverseManyToOne Template
     }
 
     class Template{
         String name
         String templateName
-        OneToMany View
     }
 ----
 
