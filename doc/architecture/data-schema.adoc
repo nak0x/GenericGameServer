@@ -79,6 +79,15 @@ classDiagram
 
 [cols="1,1"]
 |===
+| Core | Game
+
+|string(128)
+|name
+
+|===
+
+[cols="1,1"]
+|===
 | Core | Admin
 
 |string(128)

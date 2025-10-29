@@ -49,6 +49,9 @@ The learn more check the xref:./core.adoc[Core specification].
 |===
 | Concept name | Description
 
+|Game
+|The game is the central point, it's the entity that hold base game infos and link the others.
+
 |Admin
 |An admin can be think of Game Developper or as the entity that manage and administrate the game.
 
