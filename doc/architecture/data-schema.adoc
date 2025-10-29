@@ -7,9 +7,8 @@
 ----
 classDiagram
 
-    Game "*" --> "*" Admin
+    Game "*" --> "*" User
     Game "1" --> "*" Client
-    Game "1" --> "*" Player
     Game "1" --> "*" Data
 
     Data "*" --> "*" DataType
@@ -23,22 +22,16 @@ classDiagram
         String name
     }
 
-    class Admin{
+    class User{
         String name
         String email
+				Enum role
         MD5 password
     }
 
     class Client {
         String name
         String provider
-    }
-
-    class Player{
-        String name
-        String pseudo
-        MD5 password
-        OneToMany Data
     }
 
     class Data {
@@ -87,13 +80,16 @@ classDiagram
 
 [cols="1,1"]
 |===
-| Core | Admin
+| Core | User
 
 |string(128)
 |name
 
 |string(255)
 |email
+
+|Enum
+|role
 
 |MD5
 |password
@@ -109,24 +105,6 @@ classDiagram
 
 |string(255)
 |provider
-
-|===
-
-[cols="1,1"]
-|===
-| Core | Player
-
-|string(128)
-|name
-
-|string(128)
-|pseudo
-
-|MD5
-|password
-
-|OneToMany
-|Data
 
 |===
 
