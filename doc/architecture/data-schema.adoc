@@ -7,18 +7,17 @@
 ----
 classDiagram
 
-    Game<|--|>Admin
-    Game<|--|>Client
-    Game<|--Player
-    Game<|--Data
+    Game "*" --> "*" Admin
+    Game "1" --> "*" Client
+    Game "1" --> "*" Player
+    Game "1" --> "*" Data
 
-    Data<|--|>DataType
-    Data<|--ACL
+    Data "*" --> "*" DataType
+    Data "*" --> "1" ACL
 
-    View<|--Template
-    View<|--ACL
-    View<|--Data
-
+    View "1" --> "1" Template
+    View "*" --> "1" ACL
+    View "*" --> "*" Data
 
     class Game{
         String name
