@@ -45,6 +45,9 @@ The learn more check the xref:./core.adoc[Core specification].
 
 === Concepts
 
+WARNING: Theses concept are meta concept, and even if most of them directly translate to entity,
+it's not always the case.
+
 [cols="1,3"]
 |===
 | Concept name | Description
