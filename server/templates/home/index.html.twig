@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+{# Hero Section #}
+<section class="hero is-dark is-fullheight home-hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-6">
+          <h1 class="title is-1 is-spaced has-text-weight-bold">
+            Deploy persistent game servers in minutes
+          </h1>
+          <p class="subtitle is-4 has-text-grey-light">
+            The complete platform for game developers to build, deploy, and scale multiplayer infrastructure without the complexity.
+          </p>
+          <div class="buttons">
+            <a href="{{ path('app_register') }}" class="button is-info is-medium is-rounded">
+              <span>Get Started Free</span>
+            </a>
+            <a href="/demo" class="button is-dark is-medium is-rounded">
+              <span>Request Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Stats Section #}
+<section class="section has-background-black-bis">
+  <div class="container">
+    <div class="columns is-multiline has-text-centered">
+      <div class="column is-3">
+        <div class="box has-background-dark">
+          <p class="title is-2 has-text-info">99.9%</p>
+          <p class="subtitle is-6 has-text-grey-light">Uptime SLA</p>
+          <p class="has-text-grey">Guaranteed reliability</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="box has-background-dark">
+          <p class="title is-2 has-text-info">&lt;50ms</p>
+          <p class="subtitle is-6 has-text-grey-light">Average Latency</p>
+          <p class="has-text-grey">Lightning-fast response</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="box has-background-dark">
+          <p class="title is-2 has-text-info">10k+</p>
+          <p class="subtitle is-6 has-text-grey-light">Active Servers</p>
+          <p class="has-text-grey">Trusted by developers</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="box has-background-dark">
+          <p class="title is-2 has-text-info">24/7</p>
+          <p class="subtitle is-6 has-text-grey-light">Support</p>
+          <p class="has-text-grey">Always here to help</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Features Section #}
+<section class="section has-background-dark">
+  <div class="container">
+    <div class="has-text-centered mb-6">
+      <h2 class="title is-2 has-text-white">Everything you need to scale</h2>
+      <p class="subtitle is-5 has-text-grey-light">
+        Powerful features designed for game developers and server administrators
+      </p>
+    </div>
+
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-bolt fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">Instant Deployment</h3>
+          <p class="has-text-grey-light">
+            Launch game servers in seconds with our one-click deployment system. No complex configuration required.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-chart-line fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">Auto-Scaling</h3>
+          <p class="has-text-grey-light">
+            Automatically scale your infrastructure based on player demand. Handle traffic spikes effortlessly.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-globe fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">Global Network</h3>
+          <p class="has-text-grey-light">
+            Deploy servers across 15+ regions worldwide. Provide low-latency experiences for players everywhere.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-shield-alt fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">DDoS Protection</h3>
+          <p class="has-text-grey-light">
+            Enterprise-grade security built-in. Protect your servers from attacks and keep players safe.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-code fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">Developer API</h3>
+          <p class="has-text-grey-light">
+            Full REST API and SDKs for seamless integration. Automate everything with powerful developer tools.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="box has-background-black-bis">
+          <div class="icon-text mb-4">
+            <span class="icon has-text-info is-large">
+              <i class="fas fa-database fa-2x"></i>
+            </span>
+          </div>
+          <h3 class="title is-4 has-text-white">Persistent Storage</h3>
+          <p class="has-text-grey-light">
+            Reliable data persistence for player progress, game state, and configurations. Never lose data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# How It Works Section #}
+<section class="section has-background-black-bis">
+  <div class="container">
+    <div class="has-text-centered mb-6">
+      <h2 class="title is-2 has-text-white">Get started in three steps</h2>
+      <p class="subtitle is-5 has-text-grey-light">
+        From zero to production in minutes
+      </p>
+    </div>
+
+    <div class="columns">
+      <div class="column is-4">
+        <div class="has-text-centered">
+          <div class="box has-background-dark" style="border-left: 4px solid #3e8ed0;">
+            <span class="tag is-info is-large is-rounded mb-4">1</span>
+            <h3 class="title is-4 has-text-white">Create Your Server</h3>
+            <p class="has-text-grey-light">
+              Choose your game engine, select a region, and configure your server settings through our intuitive dashboard.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="has-text-centered">
+          <div class="box has-background-dark" style="border-left: 4px solid #3e8ed0;">
+            <span class="tag is-info is-large is-rounded mb-4">2</span>
+            <h3 class="title is-4 has-text-white">Deploy & Configure</h3>
+            <p class="has-text-grey-light">
+              Upload your game build, set environment variables, and deploy with a single click. We handle the infrastructure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="has-text-centered">
+          <div class="box has-background-dark" style="border-left: 4px solid #3e8ed0;">
+            <span class="tag is-info is-large is-rounded mb-4">3</span>
+            <h3 class="title is-4 has-text-white">Monitor & Scale</h3>
+            <p class="has-text-grey-light">
+              Track performance metrics, manage player sessions, and scale resources as your game grows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Supported Engines Section #}
+<section class="section has-background-dark">
+  <div class="container">
+    <div class="has-text-centered mb-6">
+      <h2 class="title is-2 has-text-white">Works with your favorite engines</h2>
+      <p class="subtitle is-5 has-text-grey-light">
+        Native support for popular game engines and frameworks
+      </p>
+    </div>
+
+    <div class="columns is-vcentered is-multiline has-text-centered">
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">Unity</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">Unreal</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">Godot</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">GameMaker</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">Custom</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box has-background-black-bis">
+          <p class="title is-5 has-text-white">More</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# CTA Section #}
+<section class="section has-background-black-bis">
+  <div class="container">
+    <div class="box has-background-dark has-text-centered" style="border: 2px solid #3e8ed0;">
+      <h2 class="title is-2 has-text-white">Ready to deploy your game servers?</h2>
+      <p class="subtitle is-4 has-text-grey-light mb-5">
+        Join thousands of game developers building the next generation of multiplayer experiences
+      </p>
+      <div class="buttons is-centered">
+        <a href="{{ path('app_register') }}" class="button is-info is-large is-rounded">
+          <span>Start Building Now</span>
+        </a>
+        <a href="/pricing" class="button is-light is-large is-rounded">
+          <span>View Pricing</span>
+        </a>
+      </div>
+      <p class="has-text-grey mt-4">
+        <small>No credit card required • Free tier available • Cancel anytime</small>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

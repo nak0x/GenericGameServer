@@ -1,0 +1,6 @@
+# .symfony.local.yaml
+workers:
+
+    # Build in Encore intergration
+    npm_encore_watch: ~
+    # docker_compose: ~

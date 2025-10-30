@@ -1,0 +1,5 @@
+= Todo list
+
+This todo hold all the things I will need to add to the project.
+
+- [ ] Add timestamping in entities (created, updated)

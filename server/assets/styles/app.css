@@ -1,3 +1,37 @@
-body {
-    background-color: skyblue;
+/* === HOME === */
+.home-hero {
+    background-image: url("/images/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* === LOGIN === */
+/* Input focus styles */
+.input:focus {
+    border-color: #3e8ed0 !important;
+    box-shadow: 0 0 0 0.125em rgba(62, 142, 208, 0.25) !important;
+}
+
+/* Button hover effect */
+.button.is-info:hover {
+    background-color: #3082c5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(62, 142, 208, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Link hover effects */
+a.has-text-info:hover {
+    text-decoration: underline;
+}
+
+/* Notification delete button */
+.notification .delete {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Checkbox styling */
+.checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
 }

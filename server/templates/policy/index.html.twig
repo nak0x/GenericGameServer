@@ -1,0 +1,301 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PolicyController!{% endblock %}
+
+{% block body %}
+    <section class="section" style="background-color: #0a0a0a; min-height: 100vh;">
+        {# Hero Section #}
+        <div class="hero is-dark is-small" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-1 has-text-weight-bold" style="color: #00d1b2;">
+                        Privacy Policy
+                    </h1>
+                    <p class="subtitle is-5" style="color: #b5b5b5;">
+                        Last updated: {{ "now"|date("F d, Y") }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {# Main Content #}
+        <div class="container mt-6 mb-6">
+            <div class="columns">
+                {# Sidebar Navigation #}
+                <div class="column is-3 is-hidden-mobile">
+                    <aside class="menu" style="position: sticky; top: 20px;">
+                        <p class="menu-label" style="color: #00d1b2;">
+                            Contents
+                        </p>
+                        <ul class="menu-list">
+                            <li><a href="#introduction" style="color: #b5b5b5;">Introduction</a></li>
+                            <li><a href="#information-collection" style="color: #b5b5b5;">Information We Collect</a></li>
+                            <li><a href="#information-use" style="color: #b5b5b5;">How We Use Information</a></li>
+                            <li><a href="#data-sharing" style="color: #b5b5b5;">Data Sharing</a></li>
+                            <li><a href="#data-security" style="color: #b5b5b5;">Data Security</a></li>
+                            <li><a href="#your-rights" style="color: #b5b5b5;">Your Rights</a></li>
+                            <li><a href="#cookies" style="color: #b5b5b5;">Cookies</a></li>
+                            <li><a href="#changes" style="color: #b5b5b5;">Policy Changes</a></li>
+                            <li><a href="#contact" style="color: #b5b5b5;">Contact Us</a></li>
+                        </ul>
+                    </aside>
+                </div>
+
+                {# Content Area #}
+                <div class="column is-9">
+                    <div class="box" style="background-color: #1a1a1a; border: 1px solid #2a2a2a;">
+                        <div class="content" style="color: #e0e0e0;">
+
+                            {# Introduction #}
+                            <h2 id="introduction" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-info-circle"></i></span>
+                                <span>Introduction</span>
+                            </span>
+                            </h2>
+                            <p>
+                                Welcome to our game server management platform. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.
+                            </p>
+                            <p>
+                                By accessing or using our platform, you agree to the terms outlined in this Privacy Policy. If you do not agree with our policies and practices, please do not use our services.
+                            </p>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Information Collection #}
+                            <h2 id="information-collection" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-database"></i></span>
+                                <span>Information We Collect</span>
+                            </span>
+                            </h2>
+
+                            <h3 class="title is-5" style="color: #00d1b2;">Personal Information</h3>
+                            <p>We collect information that you provide directly to us, including:</p>
+                            <ul>
+                                <li>Account information (username, email address, password)</li>
+                                <li>Profile information (display name, avatar, bio)</li>
+                                <li>Payment information (processed securely through third-party providers)</li>
+                                <li>Communication data (support tickets, feedback, correspondence)</li>
+                            </ul>
+
+                            <h3 class="title is-5 mt-4" style="color: #00d1b2;">Technical Information</h3>
+                            <p>We automatically collect certain information when you use our platform:</p>
+                            <ul>
+                                <li>Server configuration and deployment data</li>
+                                <li>Usage statistics and performance metrics</li>
+                                <li>IP addresses and device information</li>
+                                <li>Browser type and operating system</li>
+                                <li>Log files and error reports</li>
+                            </ul>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Information Use #}
+                            <h2 id="information-use" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-cogs"></i></span>
+                                <span>How We Use Your Information</span>
+                            </span>
+                            </h2>
+                            <p>We use the information we collect for the following purposes:</p>
+                            <ul>
+                                <li><strong>Service Delivery:</strong> To provide, maintain, and improve our game server hosting services</li>
+                                <li><strong>Account Management:</strong> To create and manage your account, authenticate users, and process transactions</li>
+                                <li><strong>Communication:</strong> To send service updates, security alerts, and respond to your inquiries</li>
+                                <li><strong>Performance Monitoring:</strong> To monitor server performance, uptime, and optimize our infrastructure</li>
+                                <li><strong>Security:</strong> To detect, prevent, and address technical issues, fraud, and security threats</li>
+                                <li><strong>Analytics:</strong> To understand usage patterns and improve user experience</li>
+                                <li><strong>Legal Compliance:</strong> To comply with legal obligations and enforce our terms of service</li>
+                            </ul>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Data Sharing #}
+                            <h2 id="data-sharing" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-share-alt"></i></span>
+                                <span>Data Sharing and Disclosure</span>
+                            </span>
+                            </h2>
+                            <p>We do not sell your personal information. We may share your information in the following circumstances:</p>
+
+                            <div class="notification" style="background-color: #2a2a2a; border-left: 4px solid #00d1b2;">
+                                <h4 class="title is-6" style="color: #00d1b2;">Service Providers</h4>
+                                <p style="color: #e0e0e0;">We work with third-party service providers for payment processing, cloud infrastructure, analytics, and customer support.</p>
+                            </div>
+
+                            <div class="notification" style="background-color: #2a2a2a; border-left: 4px solid #00d1b2;">
+                                <h4 class="title is-6" style="color: #00d1b2;">Legal Requirements</h4>
+                                <p style="color: #e0e0e0;">We may disclose information if required by law, court order, or government request, or to protect our rights and safety.</p>
+                            </div>
+
+                            <div class="notification" style="background-color: #2a2a2a; border-left: 4px solid #00d1b2;">
+                                <h4 class="title is-6" style="color: #00d1b2;">Business Transfers</h4>
+                                <p style="color: #e0e0e0;">In the event of a merger, acquisition, or sale of assets, your information may be transferred to the acquiring entity.</p>
+                            </div>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Data Security #}
+                            <h2 id="data-security" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-shield-alt"></i></span>
+                                <span>Data Security</span>
+                            </span>
+                            </h2>
+                            <p>
+                                We implement industry-standard security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. Our security practices include:
+                            </p>
+                            <ul>
+                                <li>Encryption of data in transit using TLS/SSL protocols</li>
+                                <li>Encryption of sensitive data at rest</li>
+                                <li>Regular security audits and vulnerability assessments</li>
+                                <li>Access controls and authentication mechanisms</li>
+                                <li>Secure data centers with physical security measures</li>
+                                <li>Employee training on data protection and privacy</li>
+                            </ul>
+                            <p>
+                                While we strive to protect your information, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security.
+                            </p>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Your Rights #}
+                            <h2 id="your-rights" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-user-shield"></i></span>
+                                <span>Your Rights and Choices</span>
+                            </span>
+                            </h2>
+                            <p>You have the following rights regarding your personal information:</p>
+
+                            <div class="columns is-multiline mt-4">
+                                <div class="column is-6">
+                                    <div class="box" style="background-color: #2a2a2a; height: 100%;">
+                                        <h4 class="title is-6" style="color: #00d1b2;">Access</h4>
+                                        <p style="color: #e0e0e0;">Request a copy of the personal information we hold about you</p>
+                                    </div>
+                                </div>
+                                <div class="column is-6">
+                                    <div class="box" style="background-color: #2a2a2a; height: 100%;">
+                                        <h4 class="title is-6" style="color: #00d1b2;">Correction</h4>
+                                        <p style="color: #e0e0e0;">Update or correct inaccurate or incomplete information</p>
+                                    </div>
+                                </div>
+                                <div class="column is-6">
+                                    <div class="box" style="background-color: #2a2a2a; height: 100%;">
+                                        <h4 class="title is-6" style="color: #00d1b2;">Deletion</h4>
+                                        <p style="color: #e0e0e0;">Request deletion of your personal information (subject to legal requirements)</p>
+                                    </div>
+                                </div>
+                                <div class="column is-6">
+                                    <div class="box" style="background-color: #2a2a2a; height: 100%;">
+                                        <h4 class="title is-6" style="color: #00d1b2;">Portability</h4>
+                                        <p style="color: #e0e0e0;">Receive your data in a structured, machine-readable format</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mt-4">
+                                To exercise these rights, please contact us at <a href="mailto:privacy@example.com" style="color: #00d1b2;">privacy@example.com</a>. We will respond to your request within 30 days.
+                            </p>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Cookies #}
+                            <h2 id="cookies" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-cookie-bite"></i></span>
+                                <span>Cookies and Tracking</span>
+                            </span>
+                            </h2>
+                            <p>
+                                We use cookies and similar tracking technologies to enhance your experience on our platform. Cookies are small data files stored on your device that help us:
+                            </p>
+                            <ul>
+                                <li>Remember your preferences and settings</li>
+                                <li>Keep you logged in to your account</li>
+                                <li>Analyze site traffic and usage patterns</li>
+                                <li>Improve our services and user experience</li>
+                            </ul>
+                            <p>
+                                You can control cookies through your browser settings. However, disabling cookies may limit your ability to use certain features of our platform.
+                            </p>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Changes #}
+                            <h2 id="changes" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-sync-alt"></i></span>
+                                <span>Changes to This Policy</span>
+                            </span>
+                            </h2>
+                            <p>
+                                We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by:
+                            </p>
+                            <ul>
+                                <li>Posting the updated policy on our website</li>
+                                <li>Updating the "Last updated" date at the top of this page</li>
+                                <li>Sending an email notification for significant changes</li>
+                            </ul>
+                            <p>
+                                Your continued use of our services after any changes indicates your acceptance of the updated Privacy Policy.
+                            </p>
+
+                            <hr style="background-color: #2a2a2a;">
+
+                            {# Contact #}
+                            <h2 id="contact" class="title is-3 mt-5" style="color: #00d1b2;">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-envelope"></i></span>
+                                <span>Contact Us</span>
+                            </span>
+                            </h2>
+                            <p>
+                                If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
+                            </p>
+
+                            <div class="box" style="background-color: #2a2a2a;">
+                                <div class="columns">
+                                    <div class="column">
+                                        <p style="color: #e0e0e0;">
+                                            <strong style="color: #00d1b2;">Email:</strong><br>
+                                            <a href="mailto:privacy@example.com" style="color: #00d1b2;">privacy@example.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #e0e0e0;">
+                                            <strong style="color: #00d1b2;">Support:</strong><br>
+                                            <a href="mailto:support@example.com" style="color: #00d1b2;">support@example.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #e0e0e0;">
+                                            <strong style="color: #00d1b2;">Address:</strong><br>
+                                            123 Server Street<br>
+                                            Tech City, TC 12345
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .menu-list a:hover {
+            background-color: #2a2a2a;
+            color: #00d1b2 !important;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}

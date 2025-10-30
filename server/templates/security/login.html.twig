@@ -3,36 +3,137 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <section class="section" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); min-height: 100vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop">
+                    <div class="box" style="background-color: #1a1a1a; border: 1px solid #2a2a2a; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        {# Logo/Brand #}
+                        <div class="has-text-centered mb-5">
+                            <h1 class="title is-3 has-text-white mb-2">
+                            <span class="icon-text">
+                                <span class="icon has-text-info">
+                                    <i class="fas fa-server"></i>
+                                </span>
+                                <span>2GS</span>
+                            </span>
+                            </h1>
+                            <p class="subtitle is-6 has-text-grey-light">Sign in to your account</p>
+                        </div>
+
+                        {# Error Message #}
+                        {% if error %}
+                            <div class="notification is-danger is-light mb-4">
+                                <button class="delete"></button>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        {% endif %}
+
+                        {# Already Logged In Message #}
+                        {% if app.user %}
+                            <div class="notification is-info is-dark mb-4">
+                                You are logged in as <strong>{{ app.user.userIdentifier }}</strong>,
+                                <a href="{{ path('app_logout') }}" class="has-text-info">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        {# Login Form #}
+                        <form method="post">
+
+                            {# Username Field #}
+                            <div class="field mb-4">
+                                <label class="label has-text-grey-light" for="username">Username</label>
+                                <div class="control has-icons-left">
+                                    <input
+                                        type="text"
+                                        value="{{ last_username }}"
+                                        name="_username"
+                                        id="username"
+                                        class="input"
+                                        style="background-color: #2a2a2a; border-color: #3a3a3a; color: #ffffff;"
+                                        autocomplete="username"
+                                        required
+                                        autofocus
+                                        placeholder="Enter your username">
+                                    <span class="icon is-small is-left has-text-grey">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                </div>
+                            </div>
+
+                            {# Password Field #}
+                            <div class="field mb-5">
+                                <label class="label has-text-grey-light" for="password">Password</label>
+                                <div class="control has-icons-left">
+                                    <input
+                                        type="password"
+                                        name="_password"
+                                        id="password"
+                                        class="input"
+                                        style="background-color: #2a2a2a; border-color: #3a3a3a; color: #ffffff;"
+                                        autocomplete="current-password"
+                                        required
+                                        placeholder="Enter your password">
+                                    <span class="icon is-small is-left has-text-grey">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                </div>
+                            </div>
+
+                            {# Remember Me & Forgot Password #}
+                            <div class="field mb-5">
+                                <div class="level is-mobile">
+                                    <div class="level-left">
+                                        <label class="checkbox has-text-grey-light">
+                                            <input type="checkbox" name="_remember_me">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <div class="level-right">
+                                        <a href="#" class="has-text-info is-size-7">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# CSRF Token #}
+                            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                            {# Submit Button #}
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-info is-fullwidth is-medium" type="submit">
+                                    <span class="icon">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                    </span>
+                                        <span>Sign In</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {# Sign Up Link #}
+                            <div class="has-text-centered mt-4">
+                                <p class="has-text-grey-light is-size-7">
+                                    Don't have an account?
+                                    <a href="{{ path('app_register') }}" class="has-text-info">Sign up</a>
+                                </p>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    {# Additional Help Text #}
+                    <div class="has-text-centered mt-4">
+                        <p class="has-text-grey is-size-7">
+                            By signing in, you agree to our
+                            <a href="{{ path('app_policy_tos') }}" class="has-text-info">Terms of Service</a> and
+                            <a href="{{ path('app_policy') }}" class="has-text-info">Privacy Policy</a>
+                        </p>
+                    </div>
+
+                </div>
             </div>
-        {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Username</label>
-        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+        </div>
+    </section>
 {% endblock %}
