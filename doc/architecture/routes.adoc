@@ -1,0 +1,43 @@
+= Routes
+
+WARNING: All the routes that dont start with `/api/` are UI routes.
+
+== Root routes
+
+=== `/` - Index (Home)
+
+Home page is a static marketing page to bulshit stuff for game devs.
+
+=== `/policy` - Policy agreement
+
+Legal page for policy agreement.
+
+=== `/tos` - Termes of Services
+
+Legal page for TOS agreement.
+
+=== `/login` - Login
+
+UI login form
+
+=== `/logout` - Logout
+
+Logout route. Handled by firewall.
+
+=== `/register` - Register
+
+Registration form.
+
+== Dashboard
+
+=== `/dashboard/` - Index (Dashboard)
+
+Home page of the admin dashboard.
+
+=== `/dashboard/games/` - Games (Dasboard)
+
+Manage games.
+
+=== `/dashboard/games/<id>` - Games (Dasboard)
+
+Update, edit, delete a single game.

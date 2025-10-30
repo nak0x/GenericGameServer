@@ -1,5 +1,10 @@
 = Generic Game Server Architecture
 
+[#routes]
+== Application routes
+
+You can find all the routes details and theirs explanation on the xref:./routes.adoc[Routes] page.
+
 [#schema]
 == Schema
 The data schema of the generic game servers, and the lists of the entities can be found here :
