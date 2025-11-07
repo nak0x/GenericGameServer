@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
-#[Broadcast]
 class Ressource
 {
     #[ORM\Id]

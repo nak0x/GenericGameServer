@@ -3,3 +3,5 @@
 This todo hold all the things I will need to add to the project.
 
 - [ ] Add timestamping in entities (created, updated)
+- [ ] Remplire la fiche d'evaluation
+- [ ] Add a game details view in `/dashboard/game/{id}` that should display all the details of the game and it's datas using tables.

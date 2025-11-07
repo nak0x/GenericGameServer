@@ -1,0 +1,115 @@
+{% extends 'dashboard/dashboard_base.html.twig' %}
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            {% if 'edit' in currentPath %}
+                <h1 class="title">Edit {{ game.name }}</h1>
+            {% else %}
+                <h1 class="title">Create a new Game</h1>
+            {% endif %}
+
+            {{ form_start(form, {'attr': {'class': 'box'}}) }}
+
+            {# --- Name Field --- #}
+            <div class="field">
+                {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label'}}) }}
+                <div class="control">
+                    {{ form_widget(form.name, {'attr': {'class': 'input', 'placeholder': 'Enter name'}}) }}
+                </div>
+                {% if form_errors(form.name) %}
+                    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                {% endif %}
+            </div>
+
+            {# --- Users Field (multiple select) --- #}
+            <button type="button" class="button is-outlined is-link add_item_link" data-collection-holder-class="clients">Add a client</button>
+            <ul class="clients mt-3 grid"
+                data-index="{{ form.clients|length > 0 ? form.clients|last.vars.name + 1 : 0 }}"
+                data-prototype="
+                {{ ('
+                    <div class=\"field\">
+                        ' ~ form_label(form.clients.vars.prototype.name, 'Client Name', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.clients.vars.prototype.name, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <div class=\"field\">
+                        ' ~ form_label(form.clients.vars.prototype.provider, 'Provider', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.clients.vars.prototype.provider, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <button type=\"button\" class=\"button is-outlined is-danger remove-item\">Remove</button>
+                ') | e('html_attr') }}">
+                {% for client in form.clients %}
+                    <li class="cell is-col-min-20">
+                        <div class="field">
+                            {{ form_label(client.name, 'Client Name', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(client.name, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            {{  form_label(client.provider, 'Provider', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(client.provider, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+                        <button type="button" class="button is-outlined is-danger remove-item">Remove</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% do form.clients.setRendered %}
+
+            {# --- Submit button --- #}
+            <div class="field is-grouped mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <a href="{{ path('app_dashboard') }}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.add_item_link').forEach(btn => {
+            btn.addEventListener('click', addFormToCollection)
+        });
+
+        function addFormToCollection(e) {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+            const item = document.createElement('li');
+
+            item.classList.add('cell', 'is-col-min-20');
+
+            item.innerHTML = collectionHolder.dataset.prototype.replace(
+                /__name__/g,
+                collectionHolder.dataset.index
+            );
+
+            collectionHolder.appendChild(item);
+            collectionHolder.dataset.index++;
+
+            addRemoveButtonListener(item);
+        }
+
+        function addRemoveButtonListener(item) {
+            const removeButton = item.querySelector('.remove-item');
+            if (removeButton) {
+                removeButton.addEventListener('click', () => item.remove());
+            }
+        }
+
+        // Enable removal for existing items too
+        document.querySelectorAll('.clients .remove-item').forEach(addRemoveButtonListener);
+    </script>
+{% endblock %}

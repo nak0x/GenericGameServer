@@ -1,3 +1,11 @@
+/* === Bulma overrides === */
+:root {
+    --bulma-primary-h: 197;   /* optional: hue */
+    --bulma-primary-s: 100%;  /* optional: saturation */
+    --bulma-primary-l: 70%;   /* optional: lightness */
+    --bulma-primary: #66D1FF; /* this is the one you want */
+}
+
 /* === HOME === */
 .home-hero {
     background-image: url("/images/hero.jpg");

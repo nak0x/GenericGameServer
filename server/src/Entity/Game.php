@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
-#[Broadcast]
 class Game
 {
     #[ORM\Id]
@@ -29,7 +28,7 @@ class Game
     /**
      * @var Collection<int, Client>
      */
-    #[ORM\OneToMany(targetEntity: Client::class, mappedBy: 'game', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Client::class, mappedBy: 'game', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $clients;
 
     /**

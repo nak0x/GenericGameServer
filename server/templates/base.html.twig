@@ -1,5 +1,12 @@
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+{% if 'dashboard' not in currentPath %}
+    <html class="has-navbar-fixed-top">
+{% else %}
+    <html>
+{% endif %}
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -13,8 +20,12 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'components/_navbar.html.twig' %}
-        {% block body %}{% endblock %}
-        {% include 'components/_footer.html.twig' %}
+        {% if 'dashboard' not in currentPath %}
+            {% include 'components/_navbar.html.twig' %}
+        {% endif %}
+            {% block body %}{% endblock %}
+        {% if 'dashboard' not in currentPath %}
+            {% include 'components/_footer.html.twig' %}
+        {% endif %}
     </body>
 </html>

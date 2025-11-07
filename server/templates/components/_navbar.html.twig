@@ -1,65 +1,72 @@
 <nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <strong class="has-text-info is-size-4">2GS</strong>
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <strong class="has-text-info is-size-4">2GS</strong>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="mainNavbar" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="#features">
+                Features
             </a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
+            <a class="navbar-item" href="#pricing">
+                Pricing
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Resources
+                </a>
+
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="/docs">
+                        Documentation
+                    </a>
+                    <a class="navbar-item" href="/api">
+                        API Reference
+                    </a>
+                    <a class="navbar-item" href="/guides">
+                        Guides
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="/status">
+                        System Status
+                    </a>
+                </div>
+            </div>
+
+            <a class="navbar-item" href="/support">
+                Support
             </a>
         </div>
 
-        <div id="mainNavbar" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="#features">
-                    Features
-                </a>
-
-                <a class="navbar-item" href="#pricing">
-                    Pricing
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        Resources
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                {% if app.user %}
+                    <a class="button is-info" href="{{ path('app_dashboard') }}">
+                        <strong>Dashboard</strong>
                     </a>
-
-                    <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item" href="/docs">
-                            Documentation
-                        </a>
-                        <a class="navbar-item" href="/api">
-                            API Reference
-                        </a>
-                        <a class="navbar-item" href="/guides">
-                            Guides
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="/status">
-                            System Status
-                        </a>
-                    </div>
-                </div>
-
-                <a class="navbar-item" href="/support">
-                    Support
-                </a>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-dark" href="/login">
+                    <a class="button is-dark" href="{{ path('app_logout') }}">
+                        <strong>Log out</strong>
+                    </a>
+                {% else %}
+                        <a class="button is-dark" href="{{ path('app_login') }}">
                             <strong>Log in</strong>
                         </a>
-                        <a class="button is-info" href="/register">
+                        <a class="button is-info" href="{{ path('app_register') }}">
                             <strong>Sign up</strong>
                         </a>
-                    </div>
+                {% endif %}
                 </div>
             </div>
         </div>
