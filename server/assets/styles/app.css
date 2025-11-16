@@ -6,6 +6,10 @@
     --bulma-primary: #66D1FF; /* this is the one you want */
 }
 
+.has-radius {
+    border-radius: 4px;
+}
+
 /* === HOME === */
 .home-hero {
     background-image: url("/images/hero.jpg");

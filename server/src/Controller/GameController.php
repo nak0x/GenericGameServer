@@ -33,6 +33,7 @@ final class GameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $game->computeSlug();
             $em->persist($game);
             $em->flush();
             return $this->redirectToRoute('app_dashboard');
@@ -43,10 +44,22 @@ final class GameController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/game/edit/{id}', name: 'app_game_edit', methods: ['GET','POST'])]
-    public function edit(int $id, Request $request, EntityManagerInterface $em, GameRepository $gameRepository): Response
+    #[Route('/dashboard/game/{slug}', name: 'app_game_show', methods: ['GET'])]
+    public function showGame(string $slug, GameRepository $gameRepository): Response
     {
-        $game = $gameRepository->find($id);
+        $game = $gameRepository->findOneBy(['slug'=>$slug]);
+
+        return $this->render('dashboard/game/show.html.twig', [
+            'game' => $game
+        ]);
+    }
+
+    #[Route('/dashboard/game/edit/{slug}', name: 'app_game_edit', methods: ['GET','POST'])]
+    public function edit(string $slug, Request $request, EntityManagerInterface $em, GameRepository $gameRepository): Response
+    {
+        $game = $gameRepository->findOneBy([
+            'slug' => $slug
+        ]);
         $form = $this->createForm(GameType::class, $game);
 
         $form->handleRequest($request);
@@ -63,10 +76,10 @@ final class GameController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/game/delete/{id}', name: 'app_game_delete', methods: ['POST'])]
-    public function delete(int $id, Request $request, GameRepository $gameRepository, EntityManagerInterface $em): RedirectResponse
+    #[Route('/dashboard/game/delete/{slug}', name: 'app_game_delete', methods: ['POST'])]
+    public function delete(string $slug, Request $request, GameRepository $gameRepository, EntityManagerInterface $em): RedirectResponse
     {
-        $game = $gameRepository->find($id);
+        $game = $gameRepository->findOneBy(['slug'=>$slug]);
 
         if (!$game) {
             throw $this->createNotFoundException('Game not found');

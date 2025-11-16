@@ -9,7 +9,7 @@ use App\Entity\User;
 use App\Repository\GameRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GamePlayersProvider implements ProviderInterface
+class GamePlayerProvider implements ProviderInterface
 {
     public function __construct(
         private readonly GameRepository $gameRepository,

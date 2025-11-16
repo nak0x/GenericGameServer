@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Provider\GamePlayersProvider;
+use App\Provider\GamePlayerProvider;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -29,7 +29,7 @@ use App\Provider\GamePlayersProvider;
                     fromProperty: 'users'
                 ),
             ],
-            provider: GamePlayersProvider::class,
+            provider: GamePlayerProvider::class,
             name: 'game_players'
         )
     ]

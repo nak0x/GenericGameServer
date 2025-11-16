@@ -1,0 +1,46 @@
+{% extends 'dashboard/dashboard_base.html.twig' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Add a user to {{ game.name }}</h1>
+
+        {{ form_start(form, { attr: { class: 'box' } }) }}
+
+        <div class="field">
+            {{ form_label(form.username, null, { label_attr: { class: 'label' } }) }}
+            <div class="control">
+                {{ form_widget(form.username, { attr: { class: 'input' } }) }}
+            </div>
+            {{ form_errors(form.username) }}
+        </div>
+
+        <div class="field">
+            <label class="label">Roles</label>
+            <div class="control">
+                {{ form_widget(form.rolesEnum) }}
+            </div>
+            {{ form_errors(form.rolesEnum) }}
+        </div>
+
+        <div class="field">
+            {{ form_label(form.plainPassword, null, { label_attr: { class: 'label' } }) }}
+            <div class="control">
+                {{ form_widget(form.plainPassword, { attr: { class: 'input' } }) }}
+            </div>
+            {{ form_errors(form.plainPassword) }}
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary" type="submit">
+                    Create user
+                </button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</section>
+{% endblock %}
+
