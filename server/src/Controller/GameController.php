@@ -54,7 +54,7 @@ final class GameController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($game);
             $em->flush();
-            return $this->redirectToRoute('app_game_edit', ['id' => $id]);
+            return $this->redirectToRoute('app_dashboard');
         }
 
         return $this->render('/dashboard/game/game_form.html.twig', [

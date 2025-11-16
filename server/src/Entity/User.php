@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,13 +12,37 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Provider\GamePlayersProvider;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new GetCollection(
+            uriTemplate: '/games/{slug}/players',
+            uriVariables: [
+                'slug' => new Link(
+                    fromClass: Game::class,
+                    fromProperty: 'users'
+                ),
+            ],
+            provider: GamePlayersProvider::class,
+            name: 'game_players'
+        )
+    ]
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // === Entity fields ===
+    // private ?int $id
+    // private ?string $username
+    // private array $roles
+    // private ?string $password
+    // private Collection $games
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

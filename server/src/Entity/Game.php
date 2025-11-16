@@ -6,14 +6,18 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
+use ApiPlatform\Metadata as API;
+use ApiPlatform\Metadata\ApiProperty;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
+#[API\ApiResource()]
 class Game
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[ApiProperty(identifier: false)]
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
@@ -37,11 +41,27 @@ class Game
     #[ORM\OneToMany(targetEntity: Ressource::class, mappedBy: 'game', orphanRemoval: true)]
     private Collection $ressources;
 
+    #[ORM\Column(length: 255)]
+    #[ApiProperty(identifier: true)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->clients = new ArrayCollection();
         $this->ressources = new ArrayCollection();
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function computeSlug(): void
+    {
+        if (!isset($this->name)) {
+            return;
+        }
+
+        $slugger = new AsciiSlugger();
+        $this->slug = strtolower($slugger->slug($this->name)->toString());
     }
 
     public function getId(): ?int
@@ -144,4 +164,17 @@ class Game
 
         return $this;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
 }
+
