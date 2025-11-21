@@ -28,7 +28,7 @@ class Ressource
     /**
      * @var Collection<int, DataType>
      */
-    #[ORM\ManyToMany(targetEntity: DataType::class, mappedBy: 'ressources')]
+    #[ORM\ManyToMany(targetEntity: DataType::class, mappedBy: 'ressources', cascade: ['persist'])]
     private Collection $dataTypes;
 
     #[ORM\ManyToOne(inversedBy: 'ressources')]
@@ -38,7 +38,7 @@ class Ressource
     /**
      * @var Collection<int, Endpoint>
      */
-    #[ORM\ManyToMany(targetEntity: Endpoint::class, inversedBy: 'ressources')]
+    #[ORM\ManyToMany(targetEntity: Endpoint::class, inversedBy: 'ressources', cascade: ['persist'])]
     private Collection $endpoints;
 
     public function __construct()

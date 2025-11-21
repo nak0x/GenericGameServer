@@ -2,11 +2,7 @@
     app.request.attributes.get('_route_params')) %}
 
 <!DOCTYPE html>
-{% if 'dashboard' not in currentPath %}
-    <html class="has-navbar-fixed-top">
-{% else %}
-    <html>
-{% endif %}
+<html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>

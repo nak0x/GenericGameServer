@@ -88,7 +88,7 @@
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    <button class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary);">Remove</button>
+                                    <button class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary);" disabled>Remove</button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -112,7 +112,7 @@
             </div>
             <div class="level-right">
                 <div class="level-item">
-                    <button class="button" style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">Add Client</button>
+                    <button disabled class="button" style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">Add Client</buttond>
                 </div>
             </div>
         </div>
@@ -134,9 +134,9 @@
                                 </div>
                             </div>
                             <footer class="card-footer">
-                                <a href="#" class="card-footer-item" style="color: var(--bulma-primary);">View</a>
-                                <a href="#" class="card-footer-item" style="color: var(--bulma-primary);">Edit</a>
-                                <a href="#" class="card-footer-item" style="color: #ff6b6b;">Delete</a>
+                                <button disabled class="card-footer-item button" style="color: var(--bulma-primary);">View</button>
+                                <button disabled class="card-footer-item button" style="color: var(--bulma-primary);">Edit</button>
+                                <button disabled class="card-footer-item button" style="color: #ff6b6b;">Delete</button>
                             </footer>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
             </div>
             <div class="level-right">
                 <div class="level-item">
-                    <button class="button" style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">Add Resource</button>
+                    <a  href="{{ path('app_game_ressource_new', {slug: game.slug}) }}" class="button" style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">Add Resource</a>
                 </div>
             </div>
         </div>
@@ -179,11 +179,20 @@
                         {% for ressource in game.ressources %}
                             <tr style="border-bottom: 1px solid #3a3a3a;">
                                 <td>{{ ressource.name }}</td>
-                                <td><span class="tag" style="background-color: #3a3a3a; color: var(--bulma-primary);">{{ ressource.type }}</span></td>
+                                <td>
+                                    {% for datatype in ressource.datatypes %}
+                                    <span class="tag" style="background-color: #3a3a3a; color: var(--bulma-primary);">{{ datatype.name }} </span>
+                                    {% endfor %}
+                                </td>
                                 <td><span class="tag" style="background-color: #28a745; color: #fff;">Active</span></td>
                                 <td>
-                                    <button class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary); margin-right: 0.25rem;">Edit</button>
-                                    <button class="button is-small is-danger">Delete</button>
+                                    <div class="control is-flex">
+                                        <a href="{{ path('app_dashboard_ressource_edit', {id: ressource.id}) }}" class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary); margin-right: 0.25rem;">Edit</a>
+                                        <form method="post" action="{{ path('app_ressource_delete', { id: ressource.id }) }}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete_ressource_' ~ ressource.id) }}">
+                                            <button class="button is-small is-danger" type="submit">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}

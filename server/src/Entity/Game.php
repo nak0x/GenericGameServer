@@ -38,7 +38,7 @@ class Game
     /**
      * @var Collection<int, Ressource>
      */
-    #[ORM\OneToMany(targetEntity: Ressource::class, mappedBy: 'game', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Ressource::class, mappedBy: 'game', cascade: ['persist'], orphanRemoval: true)]
     private Collection $ressources;
 
     #[ORM\Column(length: 255)]

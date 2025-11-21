@@ -1,0 +1,201 @@
+{% extends 'dashboard/dashboard_base.html.twig' %}
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            {% if 'edit' in currentPath %}
+                <h1 class="title">Edit {{ ressource.name }}</h1>
+            {% else %}
+                <h1 class="title">Create a new Ressource</h1>
+            {% endif %}
+
+            {{ form_start(form, {'attr': {'class': 'box'}}) }}
+
+            <div class="field">
+                {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label'}}) }}
+                <div class="control">
+                    {{ form_widget(form.name, {'attr': {'class': 'input', 'placeholder': 'Enter name'}}) }}
+                </div>
+                {% if form_errors(form.name) %}
+                    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                {% endif %}
+            </div>
+            <hr class="my-5">
+            <h2 class="title is-4">Data types</h2>
+
+            <button type="button"
+                    class="button is-outlined is-link add_item_link"
+                    data-collection-holder-class="dataTypes">
+                Add a data type
+            </button>
+
+            <ul class="dataTypes mt-3 grid"
+                data-index="{{ form.dataTypes|length > 0 ? form.dataTypes|last.vars.name + 1 : 0 }}"
+                data-prototype="
+                {{ ('
+                    <div class=\"field\">
+                        ' ~ form_label(form.dataTypes.vars.prototype.name, 'Name', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.dataTypes.vars.prototype.name, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <div class=\"field\">
+                        ' ~ form_label(form.dataTypes.vars.prototype.contentType, 'Content type', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.dataTypes.vars.prototype.contentType, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <div class=\"field\">
+                        ' ~ form_label(form.dataTypes.vars.prototype.formType, 'Form type', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.dataTypes.vars.prototype.formType, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <button type=\"button\" class=\"button is-outlined is-danger remove-item\">Remove</button>
+                ') | e('html_attr') }}">
+                {% for dataType in form.dataTypes %}
+                    <li class="cell is-col-min-20">
+                        <div class="field">
+                            {{ form_label(dataType.name, 'Name', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(dataType.name, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            {{ form_label(dataType.contentType, 'Content type', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(dataType.contentType, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            {{ form_label(dataType.formType, 'Form type', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(dataType.formType, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <button type="button" class="button is-outlined is-danger remove-item">Remove</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% do form.dataTypes.setRendered %}
+            <hr class="my-5">
+            <h2 class="title is-4">Endpoints</h2>
+
+            <button type="button"
+                    class="button is-outlined is-link add_item_link"
+                    data-collection-holder-class="endpoints">
+                Add an endpoint
+            </button>
+
+            <ul class="endpoints mt-3 grid"
+                data-index="{{ form.endpoints|length > 0 ? form.endpoints|last.vars.name + 1 : 0 }}"
+                data-prototype="
+                {{ ('
+                    <div class=\"field\">
+                        ' ~ form_label(form.endpoints.vars.prototype.name, 'Name', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.endpoints.vars.prototype.name, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <div class=\"field\">
+                        ' ~ form_label(form.endpoints.vars.prototype.type, 'Type', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.endpoints.vars.prototype.type, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <div class=\"field\">
+                        ' ~ form_label(form.endpoints.vars.prototype.route, 'Route', {'label_attr': {'class': 'label'}}) ~ '
+                        <div class=\"control\">
+                            ' ~ form_widget(form.endpoints.vars.prototype.route, {'attr': {'class': 'input'}}) ~ '
+                        </div>
+                    </div>
+
+                    <button type=\"button\" class=\"button is-outlined is-danger remove-item\">Remove</button>
+                ') | e('html_attr') }}">
+                {% for endpoint in form.endpoints %}
+                    <li class="cell is-col-min-20">
+                        <div class="field">
+                            {{ form_label(endpoint.name, 'Name', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(endpoint.name, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            {{ form_label(endpoint.type, 'Type', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(endpoint.type, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            {{ form_label(endpoint.route, 'Route', {'label_attr': {'class': 'label'}}) }}
+                            <div class="control">
+                                {{ form_widget(endpoint.route, {'attr': {'class': 'input'}}) }}
+                            </div>
+                        </div>
+
+                        <button type="button" class="button is-outlined is-danger remove-item">Remove</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% do form.endpoints.setRendered %}
+
+            {# --- Submit button --- #}
+            <div class="field is-grouped mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <a href="{{ path('app_dashboard') }}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add_item_link').forEach(btn => {
+            btn.addEventListener('click', addFormToCollection);
+        });
+
+        function addFormToCollection(e) {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+            const item = document.createElement('li');
+
+            item.classList.add('cell', 'is-col-min-20');
+
+            item.innerHTML = collectionHolder.dataset.prototype.replace(
+                /__name__/g,
+                collectionHolder.dataset.index
+            );
+
+            collectionHolder.appendChild(item);
+            collectionHolder.dataset.index++;
+
+            addRemoveButtonListener(item);
+        }
+
+        function addRemoveButtonListener(item) {
+            const removeButton = item.querySelector('.remove-item');
+            if (removeButton) {
+                removeButton.addEventListener('click', () => item.remove());
+            }
+        }
+
+        // Enable removal for existing items in all collections
+        document.querySelectorAll('.dataTypes .remove-item, .endpoints .remove-item')
+            .forEach(addRemoveButtonListener);
+    </script>
+{% endblock %}
