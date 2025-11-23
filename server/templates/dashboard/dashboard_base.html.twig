@@ -12,18 +12,25 @@
             </div>
 
             <nav class="sidebar-menu">
-                <a href="#" class="menu-item is-active">
+                <a href="{{ path('app_dashboard_game') }}"
+                   class="menu-item {{ app.request.attributes.get('_route') starts with 'app_dashboard_game' ? 'is-active' : '' }}">
                     <i class="fas fa-dice"></i>
                     <span>Games</span>
                 </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-server"></i>
-                    <span>Servers</span>
+
+                <a href="{{ path('app_dashboard_ressources') }}"
+                   class="menu-item {{ app.request.attributes.get('_route') starts with 'app_dashboard_ressources' ? 'is-active' : '' }}">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Ressources</span>
                 </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Analytics</span>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_dashboard_datatype') }}"
+                   class="menu-item {{ app.request.attributes.get('_route') starts with 'app_dashboard_datatype' ? 'is-active' : '' }}">
+                    <i class="fas fa-gear"></i>
+                    <span>Data types</span>
                 </a>
+                {% endif %}
                 <a href="#" class="menu-item">
                     <i class="fas fa-users"></i>
                     <span>Players</span>

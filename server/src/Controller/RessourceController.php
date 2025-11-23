@@ -6,6 +6,7 @@ use App\Entity\Game;
 use App\Entity\Ressource;
 use App\Form\RessourceType;
 use App\Repository\GameRepository;
+use App\Repository\RessourceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,13 +47,35 @@ final class RessourceController extends AbstractController
             ]);
         }
 
-        return $this->render('dashboard/ressource/edit.html.twig', [
+        return $this->render('dashboard/ressource/form.html.twig', [
             'form' => $form->createView(),
             'game' => $game
         ]);
     }
 
-    #[Route('/dashboard/ressource/{id}/edit', name: 'app_dashboard_ressource_edit')]
+    #[Route('/dashboard/ressources', name: 'app_dashboard_ressources', methods: ['GET'])]
+    public function list(
+        Request $request,
+        RessourceRepository $ressourceRepository,
+    ): Response
+    {
+        return $this->render('dashboard/ressource/list.html.twig', [
+            'ressources' => $ressourceRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/dashboard/ressources/{id}', name: 'app_dashboard_ressource_show', methods: ['GET'])]
+    public function show(
+        int $id,
+        RessourceRepository $ressourceRepository,
+    ): Response
+    {
+        return $this->render('dashboard/ressource/show.html.twig', [
+            'ressource' => $ressourceRepository->find($id),
+        ]);
+    }
+
+    #[Route('/dashboard/ressource/{id}/edit', name: 'app_dashboard_ressource_form')]
     public function edit(
         int $id,
         Request $request,
@@ -65,7 +88,7 @@ final class RessourceController extends AbstractController
             throw $this->createNotFoundException('Ressource not found.');
         }
 
-        $form = $this->createForm(RessourceType::class, $ressource);
+        $form = $this->createForm(ResourceType::class, $ressource);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -76,11 +99,12 @@ final class RessourceController extends AbstractController
             ]);
         }
 
-        return $this->render('dashboard/ressource/edit.html.twig', [
+        return $this->render('dashboard/ressource/form.html.twig', [
             'form' => $form->createView(),
             'ressource' => $ressource,
         ]);
     }
+
 
     #[Route('/ressource/{id}', name: 'app_ressource_delete', methods: ['POST'])]
     public function delete(

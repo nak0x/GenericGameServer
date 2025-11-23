@@ -24,6 +24,15 @@ final class GameController extends AbstractController
         ]);
     }
 
+    #[Route('/dashboard', name: 'app_dashboard_game')]
+    public function list(GameRepository $gameRepository): Response
+    {
+        $games = $gameRepository->findAll();
+        return $this->render('dashboard/index.html.twig', [
+            'games' => $games,
+        ]);
+    }
+
     #[Route('/dashboard/game/create', name: 'app_game_create', methods: ['GET','POST'])]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -36,10 +45,10 @@ final class GameController extends AbstractController
             $game->computeSlug();
             $em->persist($game);
             $em->flush();
-            return $this->redirectToRoute('app_dashboard');
+            return $this->redirectToRoute('app_dashboard_game');
         }
 
-        return $this->render('dashboard/game/game_form.html.twig', [
+        return $this->render('dashboard/game/form.html.twig', [
             'form' => $form,
         ]);
     }
@@ -67,10 +76,10 @@ final class GameController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($game);
             $em->flush();
-            return $this->redirectToRoute('app_dashboard');
+            return $this->redirectToRoute('app_dashboard_game');
         }
 
-        return $this->render('/dashboard/game/game_form.html.twig', [
+        return $this->render('/dashboard/game/form.html.twig', [
             'form' => $form,
             'game' => $game,
         ]);
@@ -95,6 +104,6 @@ final class GameController extends AbstractController
             $this->addFlash('error', 'Invalid CSRF token.');
         }
 
-        return $this->redirectToRoute('app_dashboard');
+        return $this->redirectToRoute('app_dashboard_game');
     }
 }

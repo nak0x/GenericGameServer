@@ -1,0 +1,86 @@
+{# templates/dashboard/datatype/form.html.twig #}
+{% extends 'dashboard/dashboard_base.html.twig' %}
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            {% if 'edit' in currentPath %}
+                <h1 class="title">Edit {{ datatype.name }}</h1>
+            {% else %}
+                <h1 class="title">Create a new Data type</h1>
+            {% endif %}
+
+            {{ form_start(form, {'attr': {'class': 'box'}}) }}
+
+            {# --- Name --- #}
+            <div class="field">
+                {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label'}}) }}
+                <div class="control">
+                    {{ form_widget(form.name, {'attr': {'class': 'input', 'placeholder': 'Enter name'}}) }}
+                </div>
+                {% if form_errors(form.name) %}
+                    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                {% endif %}
+            </div>
+
+            {# --- Content type --- #}
+            <div class="field">
+                {{ form_label(form.contentType, 'Content type', {'label_attr': {'class': 'label'}}) }}
+                <div class="control">
+                    {{ form_widget(form.contentType, {'attr': {'class': 'input', 'placeholder': 'e.g. text/plain, application/json'}}) }}
+                </div>
+                {% if form_errors(form.contentType) %}
+                    <p class="help is-danger">{{ form_errors(form.contentType) }}</p>
+                {% endif %}
+            </div>
+
+            {# --- Form type --- #}
+            <div class="field">
+                {{ form_label(form.formType, 'Form type', {'label_attr': {'class': 'label'}}) }}
+                <div class="control">
+                    {{ form_widget(form.formType, {'attr': {'class': 'input', 'placeholder': 'e.g. textarea, select, input'}}) }}
+                </div>
+                {% if form_errors(form.formType) %}
+                    <p class="help is-danger">{{ form_errors(form.formType) }}</p>
+                {% endif %}
+            </div>
+
+            {# --- Ressources (ManyToMany) --- #}
+            {% if form.ressources is defined %}
+                <hr class="my-5">
+                <h2 class="title is-4">Associated ressources</h2>
+
+                <div class="field">
+                    {{ form_label(form.ressources, 'Ressources', {'label_attr': {'class': 'label'}}) }}
+                    <div class="control">
+                        {# Works both for multiple select or expanded checkboxes #}
+                        {{ form_widget(form.ressources) }}
+                    </div>
+                    {% if form_errors(form.ressources) %}
+                        <p class="help is-danger">{{ form_errors(form.ressources) }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {# --- Submit / Cancel --- #}
+            <div class="field is-grouped mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-link">
+                        {% if 'edit' in currentPath %}
+                            Update
+                        {% else %}
+                            Create
+                        {% endif %}
+                    </button>
+                </div>
+                <div class="control">
+                    <a href="{{ path('app_dashboard_datatype') }}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

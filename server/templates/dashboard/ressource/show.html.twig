@@ -1,0 +1,248 @@
+{% extends 'dashboard/dashboard_base.html.twig' %}
+
+{% block content %}
+    <div class="section">
+        <!-- Ressource header with name and related game -->
+        <div class="container mb-6">
+            <div class="level mb-4">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h1 class="title is-1" style="color: #fff; margin: 0;">{{ ressource.name }}</h1>
+                    </div>
+                </div>
+                <div class="level-right">
+                    {% if ressource.game is not null %}
+                        <div class="level-item">
+                            <a href="{{ path('app_game_show', { slug: ressource.game.slug }) }}"
+                               class="button is-outlined"
+                               style="border-color: var(--bulma-primary); color: var(--bulma-primary);">
+                                Back to game: {{ ressource.game.name }}
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="level-item">
+                        <a href="{{ path('app_dashboard_ressource_form', { id: ressource.id }) }}"
+                           class="button"
+                           style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">
+                            Edit Ressource
+                        </a>
+                    </div>
+                    <div class="level-item">
+                        <form method="post"
+                              action="{{ path('app_ressource_delete', { id: ressource.id }) }}"
+                              style="display:inline;"
+                              onsubmit="return confirm('Are you sure you want to delete this ressource?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete_ressource_' ~ ressource.id) }}">
+                            <button class="button is-danger">
+                                Delete Ressource
+                                <span class="icon is-small ml-1">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {% if ressource.game is not null %}
+                <p class="subtitle is-family-code"
+                   style="background-color: #2a2a2a; color: var(--bulma-primary); padding: 0.5rem; border-radius: 4px; display: inline-block;">
+                    Game: {{ ressource.game.name }} ({{ ressource.game.slug }})
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Ressource stats in columns -->
+        <div class="container">
+            <div class="columns mb-6">
+                <div class="column is-4">
+                    <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                        <p class="heading" style="color: #888;">Data entries</p>
+                        <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">
+                            {{ ressource.data|length }}
+                        </p>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                        <p class="heading" style="color: #888;">Data types</p>
+                        <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">
+                            {{ ressource.dataTypes|length }}
+                        </p>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                        <p class="heading" style="color: #888;">Endpoints</p>
+                        <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">
+                            {{ ressource.endpoints|length }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data types section -->
+        <div class="container mb-6" id="datatypes">
+            <div class="level mb-4">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h2 class="title is-3" style="color: #fff; margin: 0;">Data types</h2>
+                    </div>
+                </div>
+                <div class="level-right">
+                    {# Optional: link to manage data types for this ressource #}
+                    {# <div class="level-item">
+                    <a href="{{ path('app_ressource_datatype_manage', { id: ressource.id }) }}"
+                       class="button"
+                       style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">
+                        Manage Data Types
+                    </a>
+                </div> #}
+                </div>
+            </div>
+
+            {% if ressource.dataTypes is defined and ressource.dataTypes|length > 0 %}
+                <div class="table-container has-radius">
+                    <table class="table is-fullwidth"
+                           style="background-color: #2a2a2a; color: #fff;">
+                        <thead style="border-bottom: 2px solid var(--bulma-primary);">
+                        <tr>
+                            <th style="color: var(--bulma-primary);">Name</th>
+                            <th style="color: var(--bulma-primary);">Content type</th>
+                            <th style="color: var(--bulma-primary);">Form type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for dataType in ressource.dataTypes %}
+                            <tr style="border-bottom: 1px solid #3a3a3a;">
+                                <td>{{ dataType.name }}</td>
+                                <td>{{ dataType.contentType }}</td>
+                                <td>{{ dataType.formType }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="box"
+                     style="background-color: #2a2a2a; text-align: center; padding: 2rem;">
+                    <p style="color: #888;">No data types associated with this ressource yet.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Data entries section -->
+        <div class="container mb-6" id="data">
+            <div class="level mb-4">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h2 class="title is-3" style="color: #fff; margin: 0;">Data entries</h2>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button disabled
+                                class="button"
+                                style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">
+                            Add Data Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {% if ressource.data is defined and ressource.data|length > 0 %}
+                <div class="table-container">
+                    <table class="table is-fullwidth"
+                           style="background-color: #2a2a2a; color: #fff;">
+                        <thead style="border-bottom: 2px solid var(--bulma-primary);">
+                        <tr>
+                            <th style="color: var(--bulma-primary);">ID</th>
+                            <th style="color: var(--bulma-primary);">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for datum in ressource.data %}
+                            <tr style="border-bottom: 1px solid #3a3a3a;">
+                                <td>{{ datum.id }}</td>
+                                <td>
+                                    <div class="control is-flex">
+                                        <button disabled class="button is-small"
+                                                style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary); margin-right: 0.25rem;">
+                                            View
+                                        </button>
+                                        <button disabled class="button is-small is-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="box"
+                     style="background-color: #2a2a2a; text-align: center; padding: 2rem;">
+                    <p style="color: #888;">No data entries for this ressource yet.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Endpoints section -->
+        <div class="container mb-6" id="endpoints">
+            <div class="level mb-4">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h2 class="title is-3" style="color: #fff; margin: 0;">Endpoints</h2>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button disabled
+                                class="button"
+                                style="background-color: var(--bulma-primary); color: #1a1a1a; border: none;">
+                            Attach Endpoint
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {% if ressource.endpoints is defined and ressource.endpoints|length > 0 %}
+                <div class="table-container">
+                    <table class="table is-fullwidth"
+                           style="background-color: #2a2a2a; color: #fff;">
+                        <thead style="border-bottom: 2px solid var(--bulma-primary);">
+                        <tr>
+                            <th style="color: var(--bulma-primary);">ID</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for endpoint in ressource.endpoints %}
+                            <tr style="border-bottom: 1px solid #3a3a3a;">
+                                <td>Endpoint #{{ endpoint.id }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="box"
+                     style="background-color: #2a2a2a; text-align: center; padding: 2rem;">
+                    <p style="color: #888;">No endpoints linked to this ressource yet.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+        .table tbody tr:hover {
+            background-color: #3a3a3a;
+        }
+
+        .card:hover {
+            border-color: var(--bulma-primary);
+            box-shadow: 0 0 20px rgba(0, 209, 178, 0.2);
+        }
+    </style>
+{% endblock %}

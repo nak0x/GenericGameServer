@@ -32,23 +32,25 @@
     </div>
 
     <!-- Game stats in columns -->
-    <div class="columns mb-6">
-        <div class="column is-4">
-            <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
-                <p class="heading" style="color: #888;">Total Users</p>
-                <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.users|length }}</p>
+    <div class="container">
+        <div class="columns mb-6">
+            <div class="column is-4">
+                <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                    <p class="heading" style="color: #888;">Total Users</p>
+                    <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.users|length }}</p>
+                </div>
             </div>
-        </div>
-        <div class="column is-4">
-            <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
-                <p class="heading" style="color: #888;">Total Clients</p>
-                <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.clients|length }}</p>
+            <div class="column is-4">
+                <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                    <p class="heading" style="color: #888;">Total Clients</p>
+                    <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.clients|length }}</p>
+                </div>
             </div>
-        </div>
-        <div class="column is-4">
-            <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
-                <p class="heading" style="color: #888;">Total Resources</p>
-                <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.ressources|length }}</p>
+            <div class="column is-4">
+                <div class="box" style="background-color: #2a2a2a; border-left: 4px solid var(--bulma-primary);">
+                    <p class="heading" style="color: #888;">Total Resources</p>
+                    <p class="title" style="color: var(--bulma-primary); margin-top: 0.5rem;">{{ game.ressources|length }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -154,7 +156,7 @@
         <div class="level mb-4">
             <div class="level-left">
                 <div class="level-item">
-                    <h2 class="title is-3" style="color: #fff; margin: 0;">Resources</h2>
+                    <h2 id="ressources" class="title is-3" style="color: #fff; margin: 0;">Resources</h2>
                 </div>
             </div>
             <div class="level-right">
@@ -187,7 +189,7 @@
                                 <td><span class="tag" style="background-color: #28a745; color: #fff;">Active</span></td>
                                 <td>
                                     <div class="control is-flex">
-                                        <a href="{{ path('app_dashboard_ressource_edit', {id: ressource.id}) }}" class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary); margin-right: 0.25rem;">Edit</a>
+                                        <a href="{{ path('app_dashboard_ressource_form', {id: ressource.id}) }}" class="button is-small" style="background-color: #3a3a3a; color: var(--bulma-primary); border: 1px solid var(--bulma-primary); margin-right: 0.25rem;">Edit</a>
                                         <form method="post" action="{{ path('app_ressource_delete', { id: ressource.id }) }}">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete_ressource_' ~ ressource.id) }}">
                                             <button class="button is-small is-danger" type="submit">Delete</button>
