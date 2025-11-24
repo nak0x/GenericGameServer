@@ -1,27 +1,66 @@
-= Symfony project
+= Symfony Project
 
-== Objectifs d'apprentissage
+== Objectifs d’apprentissage
 
-. Learn to interact with other services
+. Interact with external services
 . Manage an admin panel and a small public interface to access data
-. Setup a game server for a small unity game
-. Create a generic system
-. Learn SSE and mercure
+. Set up a game server for a small Unity game
+. Create a generic, adaptable system
+. Learn SSE and Mercure
 
 == Brief
 
-The goal for this project is to have a small game server that will allow player of the said game
-to have a profile on the game server to access theirs caracters datas. The game server has to
-interact with a small game in unity.
-The game server has to be generic and allow admin to adapt the game server to theirs needs.
+The objective of this project is to build a lightweight game server that allows players to maintain a profile and access their character data. This server must interact with a small Unity game.
+
+The game server should remain generic so that administrators can adapt it to their specific needs.
 
 == Roadmap
 
-. Learn the basics of game servers
-. Define base data types
-. Setup a suited architecture
-. Create the base game server
-. Setup the admin panel
-. Setup the pubic interface
-. Add the interactions with unity (SSE)
+. Learn the fundamentals of game servers
+. Define core data types
+. Design an appropriate architecture
+. Build the base game server
+. Implement the admin panel
+. Implement the public interface
+. Add Unity integration (SSE)
 
+== Results
+
+. Learn the basics of game servers — Completed
+. Define base data types — Completed
+. Set up a suitable architecture — Concept validated, implementation incomplete
+. Create the base game server — API portion not achieved
+. Set up the admin panel — Completed
+. Set up the public interface — Not completed (scope too large)
+. Unity interaction — Out of scope
+
+== Final Notes on the Project
+
+I ran into personal issues during this period, which reduced my effective working time. Combined with a significant overestimation of what I could realistically achieve—especially considering this was my second time using Symfony—the project ended up larger than expected.
+
+I relied on AI/LLMs only to assist with styling and accelerate UI development. I wrote all application logic and backend code myself.
+
+=== If I were to redo this project:
+
+- Spend more time on the core logic and the API (my initial focus, which I ultimately failed to deliver).
+- Think more carefully before committing to a large scope on a technology I do not fully know.
+- Avoid taking too much side work during the project.
+- Avoid trying to build a generic system from the start. It was premature.
+
+=== What I learned:
+
+- In-depth work with Symfony forms.
+- A clearer understanding of Symfony’s authentication system, which I had not implemented before.
+- How to handle URL parameters and perform basic queries.
+- Practical experience with Twig templating, including discovering that a render loop can overflow RAM without an explicit error when a stack overflow occurs.
+- A reminder of how long admin dashboards take to build—and confirmation that I do not particularly enjoy that part of web development.
+
+=== My thoughts on Symfony:
+
+Symfony is a powerful framework, and its CLI tools make it easy to get started quickly. However, it is verbose, and many simple tasks require multiple layers (Entity, Repository, Controller). It gives the impression of offering building blocks rather than trying to prioritize ease of use. As someone who is not a fan of low-level querying, I tend to prefer the ergonomics of ORMs that allow simpler direct queries from controllers, similar to Django.
+
+I appreciate Twig, and later in the project I discovered Twig components, which would have significantly improved my interface. Unfortunately, it was too late to adopt them fully, but they would be a strong candidate for a future refactor. Templates—especially tables—are time-consuming to maintain.
+
+The CLI is excellent. It provides strong debugging and scaffolding tools. I used debug:router extensively to audit and track routes, and pairing it with grep/sed/vi made it possible to generate quick route-based task lists.
+
+I am less enthusiastic about the numerous configuration files. They can feel abstract and opaque. This is convenient for getting started quickly but intimidating unless you take time to read deeper into the framework’s internals.
